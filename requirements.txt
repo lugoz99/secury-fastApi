@@ -1,0 +1,17 @@
+annotated-types
+exceptiongroup
+fastapi-pagination
+pydantic
+pydantic_core
+PyJWT
+python-decouple
+python-dotenv
+SQLAlchemy
+typing_extensions
+uvicorn==0.23.2
+gunicorn
+fastapi[all]
+uvicorn[standard]
+sqlalchemy
+python-jose
+bcrypt==3.1.0
