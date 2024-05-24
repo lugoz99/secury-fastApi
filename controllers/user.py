@@ -1,7 +1,9 @@
 from fastapi import HTTPException
 from models.User import User
-from schemas.user import UserBase
+from schemas.user import UserInDB
 from sqlalchemy.orm import Session
+
+from services.auth import get_password_hashed
 
 
 class UserController:
@@ -9,7 +11,9 @@ class UserController:
     def get_all(self, bd: Session):
         return bd.query(User).all()
 
-    def create_record(self, bd: Session, user: UserBase):
+    def create_record(self, bd: Session, user: UserInDB):
+        hashed_password = get_password_hashed(user.password)
+        user.password = hashed_password
         new_user = User(**user.model_dump())
         bd.add(new_user)
         bd.commit()

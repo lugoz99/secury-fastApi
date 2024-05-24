@@ -15,3 +15,9 @@ def create_multiple_rol_permissions(
 ):
     controller = RolPermissionController()
     return controller.create_multiple(db, rol_permissions)
+
+
+@router.delete("/rol_permissions/{id}")
+def delete_rol_permission(rol_permission_id: int, db: Session = Depends(get_db)):
+    controller = RolPermissionController()
+    return controller.delete(db, rol_permission_id)

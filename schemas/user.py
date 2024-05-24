@@ -1,3 +1,4 @@
+from turtle import st
 from typing import Optional
 from pydantic import BaseModel
 
@@ -9,5 +10,5 @@ class UserBase(BaseModel):
     id_rol: int
 
 
-class TokenData(BaseModel):
-    username: str
+class UserInDB(UserBase):
+    password_hash: str

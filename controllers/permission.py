@@ -73,3 +73,11 @@ class PermissionController:
                 status_code=status.HTTP_404_NOT_FOUND, detail="Permission not found"
             )
         return permission
+
+    def delete(self, db: Session, permission_id: int):
+        permission = db.query(permissionModel).get(permission_id)
+        if permission is None:
+            raise HTTPException(status_code=404, detail="Permission not found")
+        db.delete(permission)
+        db.commit()
+        return {"message": "Permission deleted successfully"}

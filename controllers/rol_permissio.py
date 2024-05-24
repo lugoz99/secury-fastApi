@@ -1,7 +1,6 @@
 from fastapi import HTTPException, status
 from sqlalchemy import and_
 from sqlalchemy.orm import Session
-from sqlalchemy.exc import IntegrityError
 
 from models.RolPermission import RolPermission
 from schemas.rol_permission import RolPermissionBase, RolPermissionsCreate
@@ -33,6 +32,7 @@ class RolPermissionController:
             )
             db.add(new_rol_permission)
         db.commit()
+        return {"Msg": "Permisos creados"}
 
     def update(self, db: Session, id: int, rol_permission: RolPermissionBase):
         existing_rol_permission = (

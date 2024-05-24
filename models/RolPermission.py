@@ -1,4 +1,3 @@
-from wsgiref.validate import validator
 from sqlalchemy import Column, ForeignKey, Integer, String
 from database.db import Base
 from datetime import datetime
@@ -10,7 +9,6 @@ class RolPermission(Base):
     id = Column(Integer, primary_key=True)
     id_permission = Column(String, ForeignKey("permissions.id"))
     id_rol = Column(Integer, ForeignKey("rols.id"))
-    date: datetime
-    Rol = relationship("Rol", cascade="all,delete")
-    Permission = relationship("Rol", cascade="all,delete")
-    # api/user/1/post/2
+    date = datetime
+    Rol = relationship("Rol", back_populates="permissions", cascade="all,delete")
+    Permission = relationship("Permission", back_populates="rols", cascade="all,delete")
