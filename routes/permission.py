@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from controllers.permission import PermissionController
 from schemas.permission import PermissionBase
 from database.db import get_db
-from services.auth import validate_role_permission
+from services.permission_access import validate_role_permission
 
 router = APIRouter(
     tags=["permissions"],

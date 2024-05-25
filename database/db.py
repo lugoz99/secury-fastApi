@@ -21,6 +21,7 @@ SessionLocal = sessionmaker(
 def get_db():
     db = SessionLocal()
     try:
+        # Generadora session
         yield db
     finally:
         db.close()

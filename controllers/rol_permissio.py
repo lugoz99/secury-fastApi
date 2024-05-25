@@ -43,6 +43,7 @@ class RolPermissionController:
                 status_code=status.HTTP_404_NOT_FOUND, detail="RolPermission not found"
             )
         for key, value in rol_permission.dict().items():
+            # establecer atributos actualizandolos
             setattr(existing_rol_permission, key, value)
         db.commit()
         return existing_rol_permission

@@ -7,7 +7,7 @@ from database.db import get_db
 from models.User import User
 from schemas.user import UserBase
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends
 
 router = APIRouter(
     tags=["user"],
