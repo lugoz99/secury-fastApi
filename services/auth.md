@@ -1,5 +1,6 @@
 from time import timezone
 from typing import Optional
+from fastapi.security import OAuth2PasswordBearer
 import jwt
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
@@ -12,18 +13,8 @@ from fastapi import Depends, HTTPException, Request, status
 
 from schemas.auth import TokenData
 
-# Has seguro de la contraseña
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-# Proporciona autenticacion 0auth2
-
-
-# 1. Hashear las passwrod - verify_password(password, hashed_password) : usar metedo : verify
-# 2. get_password_hashed(plano password) - plano a hash password : usar metodo hash
-# 3. autenticar user(username, password) -> User: usar verify password obtener user consulta db - realizar metodo get_user
-# 4. generar tokenn acceso al usuario if se autentico el user generar el token
-# crear accesso token , algoritmo, tiempo, datos
-# 5. validar token : ha expirado o no
-# get current user autenticado
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
 
 def verify_password(password: str, hashed_password: str):
